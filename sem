@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+$loader = include __DIR__ . '/vendor/autoload.php';
+
+$semaphore = new City\Semaphore(new City\GreenState());
+$i = 0;
+do {
+    echo "{$semaphore->getState()->emit()}\n";
+    $semaphore->step();
+    sleep(10);
+    $i++;
+} while($i < 10);
